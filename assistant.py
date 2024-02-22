@@ -53,6 +53,13 @@ def searchgoogle(text):
 
     for j in search(query, tld="co.in", num=10, stop=10, pause=2):
 	    print(j)
+def getjoke():
+    
+  url = "https://icanhazdadjoke.com/api"
+  headers = {"Accept": "application/json"}
+  response = requests.get(url, headers=headers)
+  joke = response.json()["joke"]
+  return joke
 
 def process_voice_command(text):
     text = text.lower()
@@ -70,6 +77,10 @@ def process_voice_command(text):
     elif "searchgoogle" in text:
         print("search results from google")
         searchgoogle(text)
+    elif "tell jokes" in text:
+        print("searching for jokes")
+        joke=getjoke()
+        print(joke)
     elif "goodbye" in text:
         print("Goodbye! Have a great day!")
         return True
